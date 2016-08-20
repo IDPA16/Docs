@@ -5,3 +5,4 @@
 [Bibliography with Jabref and Bibtex](http://tex.stackexchange.com/questions/79427/bibtex-and-jabref)  
 [How do CNN's work?](http://cs231n.github.io/convolutional-networks/)  
 [How do CNN's work? In Depth](http://neuralnetworksanddeeplearning.com/chap6.html)  
+[Visualize CNN's](http://arxiv.org/abs/1311.2901)  
