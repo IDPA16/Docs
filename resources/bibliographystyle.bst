@@ -1,0 +1,2 @@
+TEMPLATES:
+electronic = <title>. <author>.
