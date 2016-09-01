@@ -1,2 +1,2 @@
 TEMPLATES:
-electronic = <title>. <author>.
+electronic = <title>. <author>.\newline\url{<url>} {\makeopenbracket}<note>{\makeclosebracket}
