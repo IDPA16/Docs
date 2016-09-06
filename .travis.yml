@@ -1,7 +1,10 @@
+sudo: required
+dist: trusty
 addons:
   apt:
     packages:
-      - texlive-full
+      - texlive
+      - texlive-latex-extra
 branches:
   only:
     - master
