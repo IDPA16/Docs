@@ -4,7 +4,8 @@ addons:
       - texlive
       - texlive-latex-extra
 branches:
-      only: []
+  only:
+    - master 
 script:
   - pdflatex main.tex || true
   - ./tools/bibulous.py main.aux || true
