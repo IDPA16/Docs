@@ -1,9 +1,7 @@
 addons:
   apt:
     packages:
-      - texlive
-      - texlive-latex-extra
-      - texlive-latex-base
+      - texlive-full
 branches:
   only:
     - master
