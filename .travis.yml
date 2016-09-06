@@ -3,6 +3,7 @@ addons:
     packages:
       - texlive
       - texlive-latex-extra
+      - texlive-latex-base
 branches:
   only:
     - master
