@@ -1,0 +1,20 @@
+addons:
+  apt:
+    packages:
+      - texlive
+      - texlive-latex-extra
+branches:
+      only: []
+script:
+  - pdflatex main.tex || true
+  - ./tools/bibulous.py main.aux || true
+  - pdflatex main.tex || true
+  - pdflatex main.tex
+deploy:
+  api_key:
+    secure: "d683GYJC3rR9WIHGu9T7rIyAn+sE5N7JVEXlPdVGzq514dbEYAU943DqgclUKdiVcLm/G/XOL7IvAx00uC52o0vkibBs3xGK+waLQggtkk3g1ufsjlZgSS5P3Tsmh5fFKyPuc3Km01QTqqUi+TMmtZ6Os8dPuJxC7Uewmwp7B+CnBYt8NjUGNF4wzKToFqq0fr9E4Yv1xLKwMzdcJkht/udDmZ7U7i9zrnDe8u/dmJWEH+NkpDTfP68QNnMGP96fh2loVIZwsjIOX0HBVeY2TzAacn9YSkKwqrL0pSgjucKhF++b/F1uyVKgpKHBpoTRyHm15bbb2pWssFSdtQo1Viaercm/GT4KBlqcWyZFzktzDoHdIency9bt6r1VXO52zRYkoJLM0vknPJrHPBALu9rd+27MVimwfH2PhlaKcH1PMP0HcBDYmmR8SYAWJ80KhyIngQKTkUdue/rbS/dIJYx7BHmpywOGIlZxYoRz4H+8ttW7/yGPRFGzS71xE2JeyP39MiGotIV89XasDyuyQsbKbCGXpid4id/ZR1E/sYmLusblzc1YUkMpXHAzEuxHIygw6+4pGLkk7YcRFvlGA3KTwAxz/uAyeWJPBF99xXimlMEMY5khyd1wNAw0ZNZCKK90yMvUVNlloxbFcqI7mK66u0PreGaeOjNqXcv3Upg="
+  skip_cleanup: true
+  file: main.pdf
+  on:
+    tags: true
+
