@@ -3,6 +3,7 @@
 \usepackage{subfiles}
 \usepackage{cite}
 \usepackage[hidelinks]{hyperref}
+\usepackage{ragged2e}
 \hypersetup{
 	allcolors=black,
 	colorlinks=true
@@ -30,7 +31,9 @@
 	\newpage
 
 	\nocite{*}
-	\bibliography{resources/bibliography}
-	\bibliographystyle{resources/bibliographystyle}
+	{\RaggedRight
+		\bibliography{resources/bibliography}
+		\bibliographystyle{resources/bibliographystyle}
+	}
 
 \end{document}
