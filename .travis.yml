@@ -5,6 +5,7 @@ addons:
     packages:
       - texlive
       - texlive-latex-extra
+      - pgf
 script:
   - pdflatex main.tex || true
   - ./tools/bibulous.py main.aux || true
