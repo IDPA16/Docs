@@ -5,6 +5,7 @@ addons:
     packages:
       - texlive
       - texlive-latex-extra
+      - texlive-science
       - pgf
 script:
   - pdflatex main.tex || true
