@@ -1,0 +1,13 @@
+\subsection{How does a neural network learn?}
+
+The training starts with a number of genomes. Typically referred to as the population. For each of these genomes a network is built and it is tested against the expected outputs. From these results we can assign a fitness to the genome. A higher fitness indicates that the genome was able to solve a problem better than another. \cite{Anderson1995}
+
+The initial set of genes is the first generation. The weights of all genes are set to a random value.
+
+To get to the next generation, all genomes have to be tested. Before that, each genome has a chance that a random gene mutates, E.g. the gene is assigned a new random weight.
+
+After that, we select the genomes for the next generation. To select a genome, a so called roulette wheel selection is performed. This means that every genome has a chance to get to the next generation, based on its fitness. \cite{Baeck1996}
+
+We always select two genomes at a time, so that we can perform a crossover. This means that we swap a part of the genes in the first genome with the second. \cite{Buckland}
+
+This process is repeated until a genome reaches the target fitness, which is set by the trainer.
