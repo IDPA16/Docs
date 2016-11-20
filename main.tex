@@ -14,7 +14,6 @@
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1em}
-\setstretch{1.136363636} % required 1.5pt spacing
 
 \makeatletter
 \renewcommand\@biblabel[1]{#1.}
@@ -30,19 +29,96 @@
 \newpage
 
 \begin{abstract}
-	
+
 	\newpage
-	
+
 \end{abstract}
 
 	\tableofcontents
 	\newpage
 
 	\section{Introduction to neural networks}
-	\subfile{sections/"what is a neural network"}
-	\subfile{sections/"how does a neural network learn"}
-
+		\subsection{What is a neural network?}
+			\subfile{sections/"Introduction to neural networks"/"what is a neural network"}
+		\subsection{How does a neural network learn}
+			\subsubsection{Traditional}
+				.
+			\subsubsection{Genetic algorithm}
+				\subfile{sections/"Introduction to neural networks"/"how does a neural network learn"/"genetic algorithm"}
 	\newpage
+
+	\section{What is NEAT}
+		\subsection{Topology}
+			.
+		\subsection{Speciation}
+			.
+	\newpage
+
+	\section{Convolutional Neural Networks}
+		\subsection{Problems with image recognition}
+			.
+		\subsection{Subsampling}
+			\subsubsection{Kernels}
+				.
+			\subsubsection{Poolers}
+				.
+		\subsection{Structure}
+			.
+	\newpage
+
+	\section{Hippocrates, a NEAT implementation}
+		\subsection{Motivation}
+			.
+		\subsection{Discrepancies}
+			\subsubsection{Paper}
+				.
+			\subsubsection{Original implementation}
+				.
+		\subsection{Convolutional module}
+			.
+		\subsection{Visualizing Neural Networks}
+			.
+	\newpage
+
+	\section{Build tools}
+		\subsection{Version control}
+			\subsubsection{Git}
+				.
+			\subsubsection{GitHub}
+				.
+		\subsection{Integration tests}
+			\subsubsection{Travis}
+				.
+			\subsubsection{AppVeyor}
+				.
+	\newpage
+
+	\section{Combining Neuro-Evolution of Augmenting Topologies with Convolutional Neural Networks}
+		\subsection{Possibilities of modeling}
+			.
+		\subsection{Challenges}
+			.
+		\subsection{Solutions}
+			.
+		\subsection{Implementation}
+			.
+	\newpage
+
+	\section{Results}
+		\subsection{Benchmarks}
+			.
+	\newpage
+
+	\section{Further enhancements}
+		\subsection{Safety concerns}
+			.
+		\subsection{HyperNEAT}
+			.
+	\newline
+
+	\section{Collaborators}
+		.
+	\newline
 
 	\nocite{*}
 	{\RaggedRight
