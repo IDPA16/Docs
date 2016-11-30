@@ -1,0 +1,6 @@
+Despite the kernels doing a great job at making the image smaller, the resulting data is still quite too big to work with.  
+For that reason one can use poolers, which are nothing but dull compression algorithms.
+ 
+The most used pooler is the max pooler. \cite{Graham2014}  \\
+This simple unit traditionally takes four adjacent pixels, then determines the darkest one, and simply concatenates the four original pixels into this smaller single one.  
+Repeat this process over the whole image, and you just scaled it to one fourth of it's original size.
