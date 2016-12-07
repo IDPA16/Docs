@@ -14,6 +14,7 @@
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1em}
+\setstretch{1.5}
 
 \makeatletter
 \renewcommand\@biblabel[1]{#1.}
@@ -115,16 +116,15 @@
 			.
 		\subsection{HyperNEAT}
 			.
-	\newline
+	\newpage
 
 	\section{Collaborators}
 		\subfile{sections/collaborators}
-	\newline
+	\newpage
 
 	\nocite{*}
-	{\RaggedRight
-		\bibliography{resources/bibliography}
-		\bibliographystyle{resources/bibliographystyle}
-	}
+	\setstretch{1}
+	\bibliography{resources/bibliography}
+	\bibliographystyle{resources/bibliographystyle}
 
 \end{document}
