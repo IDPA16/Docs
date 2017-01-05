@@ -12,7 +12,7 @@ script:
   - ./tools/bibulous.py main.aux || true
   - pdflatex main.tex || true
   - pdflatex main.tex
-  - (cd appendix && pdflatex *.tex)
+  - (cd appendix && pdflatex *.tex && pdflatex *.tex)
 before_deploy:
   - mv main.pdf Documentation.pdf
   - (cd appendix && for f in *.pdf; do mv $f ${f^}; done)
