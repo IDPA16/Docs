@@ -12,10 +12,10 @@ script:
   - ./tools/bibulous.py main.aux || true
   - pdflatex main.tex || true
   - pdflatex main.tex
-  - (cd appendix && pdflatex *.tex)
+  - (cd appendix && pdflatex *.tex && pdflatex *.tex)
 before_deploy:
   - mv main.pdf Documentation.pdf
-  - for file in appendix/*.pdf; do mv $file ${file^}; done
+  - (cd appendix && for f in *.pdf; do mv $f ${f^}; done)
   - (cd appendix && zip ../Appendix.zip *.pdf)
 deploy:
   provider: releases
