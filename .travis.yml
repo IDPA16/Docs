@@ -15,7 +15,7 @@ script:
   - (cd appendix && pdflatex *.tex)
 before_deploy:
   - mv main.pdf Documentation.pdf
-  - for file in appendix/*.pdf; do mv $file ${file^}; done
+  - (cd appendix && for f in *.pdf; do mv $f ${f^}; done)
   - (cd appendix && zip ../Appendix.zip *.pdf)
 deploy:
   provider: releases
