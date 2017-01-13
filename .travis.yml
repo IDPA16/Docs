@@ -8,9 +8,9 @@ addons:
       - texlive-science
       - pgf
 script:
-  - pdflatex main.tex || true
-  - ./tools/bibulous.py main.aux || true
-  - pdflatex main.tex || true
+  - pdflatex main.tex
+  - ./tools/bibulous.py main.aux
+  - pdflatex main.tex
   - pdflatex main.tex
   - (cd appendix && pdflatex *.tex && pdflatex *.tex)
 before_deploy:
