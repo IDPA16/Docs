@@ -1150,6 +1150,7 @@ class Bibdata(object):
             ## First insert special variables, so that the citation sorter and everything else can use them. Also
             ## insert cross-reference data. Doing these here means that we don't have to add lots of extra checks
             ## later.
+            missing_keys = False
             for c in self.citedict:
                 ## If the citation key is not in the database, then create a fake entry with it, using entrytype
                 ## "errormsg", and an item "errormsg" that contains the thing we want printed out in the citation
@@ -1157,13 +1158,15 @@ class Bibdata(object):
                 if c not in self.bibdata:
                     msg = 'citation key ``' + c + '\'\' is not in the bibliography database'
                     bib_warning('Warning 010a: ' + msg, self.disable)
-                    exit(1)
+                    missing_keys = True
 
                     errormsg = r'\textit{Warning: ' + msg + '}.'
                     self.bibdata[c] = {'errormsg':errormsg, 'entrytype':'errormsg', 'entrykey':c}
 
                 self.insert_crossref_data(c)
                 self.insert_specials(c)
+
+            if missing_keys: exit(1)
 
             ## Define a list which contains the citation keys, sorted in the order in which we need for writing into
             ## the BBL file.
