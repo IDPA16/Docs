@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+# pylint: disable-msg=C0321
+# pylint: max-line-length=120
+# pylint: max-module-lines=10000
+
+
 # Copyright (c) 2013 Bibulous developers
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
@@ -16,12 +22,6 @@
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 # OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-# -*- coding: UTF-8 -*-
-# pylint: disable-msg=C0321
-# pylint: max-line-length=120
-# pylint: max-module-lines=10000
-# See the LICENSE.rst file for licensing information.
 
 from __future__ import unicode_literals, print_function, division
 import re
