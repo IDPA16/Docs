@@ -21,6 +21,25 @@ This approach is probably as modular as it gets, however it brings various probl
 \end{enumerate}
 
 We can't address all of these conflicts in a satisfactory way, so we decided to go on to a next approach.
-
+\\
 We adressed issue 3 by separating the whole network into a convolutional and a fully connected part. This allows us to takle issue 1 by adding the concept of a \emph{minimal network}, inspired by NEAT's practice of always starting by combining all inputs with all outputs.  
-In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in it's application. \cite{YannLeCun1998}
+In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in it's application. \cite{YannLeCun1998}  
+\\
+The overhauled version would start out like this:  
+\\
+\includegraphics[scale=0.4]{approachtwoinit.jpg}  
+\\
+And could evolve into something like this:
+\\
+\includegraphics[scale=0.4]{approachtwoevolved.jpg}  
+\\
+
+This raises a new question: \emph{How is the meaning of the fully connected part altered when we add a new unit in the convolutional part?}  
+After detailed evaluation, we came to the conclusion that the parameters of the fully connected part would be fine tuned to a specific expected input. This expectation however ceases to be met once the dimensionality of the convolutions changes, as this shifts a lot of weight parameters towards a new meaning.  
+This means that we have two choices in case of a topological change in the convolutional part:
+\begin{enumerate}
+	\item{Adjust weights for the new meaning}
+	\item{Trash the fully connected part and train it anew}
+\end{enumerate}  
+Both of these possibilities are not satisfactory. 1 will take a long time, since the already trained structure is basically meaningless now. 2 throws away big, otherwise perfectly usable, parts of the network.  
+
