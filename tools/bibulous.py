@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Copyright (c) 2013 Bibulous developers
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
@@ -16,7 +17,6 @@
 # OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 # pylint: disable-msg=C0321
 # pylint: max-line-length=120
