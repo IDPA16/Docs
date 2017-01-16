@@ -1,0 +1,28 @@
+To determine if two organisms are compatible for reproductions with each other, one measures the difference of their genomes by a distance function.  
+The original paper describes it as follows:
+
+\begin{quote}
+	\emph{Therefore, we
+		can measure the compatibility distance \(\delta\) of different structures in NEAT as a simple linear combination of the number of excess \(E\) and disjoint \(D\) genes, as well as the average weight differences of matching genes \(\overline{W}\)
+		, including disabled genes:
+		\[
+		\delta = \frac{c_1 E}{N} + \frac{c_2 D}{N} + c_3 \cdot \overline{W} 
+		\]
+		The coefficients \(c_1\), \(c_2\), and \(c_3\) allow us to adjust the importance of the three factors, and the factor \(N\), the number of genes in the larger genome, normalizes for genome size}
+\end{quote}  
+
+Typical settings for the coefficients are \(c_1 = 1.0, c_2 = 1.0, c_3 = 0.4\).
+
+\cite{Stanley2002}
+
+However, if we look at Stanley's code \cite{Stanley2010}, the actual formula we find is
+\[ \delta = c_1 E + c_2 D + c_3 \cdot W \]  
+
+Where \(W\) is the sum of absolute weight differences.
+
+The same function is used by all the NEAT implementations that we looked at.
+This deviation is most likely intentional, although not explicitly documented by Stanley himself. In the original function, the importance of excess and disjoint is limited to the sum of \(1\) (because there can be at most \(N\) not matching genes). This means that for two completely different networks, our function results in
+\[\delta = 1 \cdot W \]
+where \(W\) is unlimited. This means, that the weight differences would be a lot more important than the topological ones, which stands in contrast to the usage of the function as an indicator of topological compatibility. \cite{Green2009}
+
+Because of this, we use the second version of the function without normalization.
