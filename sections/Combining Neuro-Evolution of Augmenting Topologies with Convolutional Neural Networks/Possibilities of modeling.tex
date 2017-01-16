@@ -6,8 +6,8 @@ So our two questions while combining become:
 	\item{How can combine these units in a meaningful way?}  
 \end{enumerate}
 
-Our first approach was simply taking NEAT and exchanging some of the neurons for Filters.  
-An example network can be seen here:  
+Our first approach was simply taking NEAT and exchanging some of the neurons for Filters.\\
+An example network can be seen here:\\
 
 \includegraphics[scale=0.4]{approachone.jpg}  
 
@@ -20,26 +20,48 @@ This approach is probably as modular as it gets, however it brings various probl
 	\item{Adding a new filter in a convolution conflicts with previous learned parameters}
 \end{enumerate}
 
-We can't address all of these conflicts in a satisfactory way, so we decided to go on to a next approach.
-\\
-We adressed issue 3 by separating the whole network into a convolutional and a fully connected part. This allows us to takle issue 1 by adding the concept of a \emph{minimal network}, inspired by NEAT's practice of always starting by combining all inputs with all outputs.  
-In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in it's application. \cite{YannLeCun1998}  
-\\
-The overhauled version would start out like this:  
-\\
-\includegraphics[scale=0.4]{approachtwoinit.jpg}  
-\\
-And could evolve into something like this:
-\\
-\includegraphics[scale=0.4]{approachtwoevolved.jpg}  
-\\
+We can't address all of these conflicts in a satisfactory way, so we decided to go on to a next approach.\\
+We adressed issue 3 by separating the whole network into a convolutional and a fully connected part. This allows us to takle issue 1 by adding the concept of a \emph{minimal network}, inspired by NEAT's practice of always starting by combining all inputs with all outputs.\\
+In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in it's application. \cite{YannLeCun1998}\\
+The overhauled version would start out like this:\\
+\includegraphics[scale=0.4]{approachtwoinit.jpg}\\
+And could evolve into something like this:\\
+\includegraphics[scale=0.4]{approachtwoevolved.jpg}\\
+This setup is problematic because filters are supposed to work together to form convolutions.\\
+To process the same input (issue 4), the filters need to have the same size, which we cannot guarantee once we randomly insert new filters or, as per issue 2, pooling layers.\\
+We can only scale the weight matrixes in the filters to the same size by either filling the smaller ones with a bunch of meaningless zeros or pooling the bigger one down, which, beeing a non-lossless compressing algorithm, makes our matrix less accurate.\\
+We come to the conclusion that we have to limit the modularity of the Filters, as doing otherwise brings to many cons.  
+Instead of letting the filters connect to whatever they want, we group them in convolutions.\\
+These can alter the dimensionality of all filters in them at once, guaranteeing homogeneity and encapsulation.\\
+As the filters are now synchronized in their convolutions, we have no more problems introducing poolers or ReLUs, as a convolution as a whole doesn't care about the size of it's input matrix.\\
+Our updated pool of available units for stochastic insertion is now:  
 
-This raises a new question: \emph{How is the meaning of the fully connected part altered when we add a new unit in the convolutional part?}  
-After detailed evaluation, we came to the conclusion that the parameters of the fully connected part would be fine tuned to a specific expected input. This expectation however ceases to be met once the dimensionality of the convolutions changes, as this shifts a lot of weight parameters towards a new meaning.  
-This means that we have two choices in case of a topological change in the convolutional part:
+\begin{table}[h]
+	\begin{tabular}{ll}
+		\textbf{Convolutional} & \textbf{Fully connected} \\
+		Convolution            & Neuron                   \\
+		Pooler                 &                          \\
+		ReLU                   &                         
+	\end{tabular}
+\end{table}
+
+Our starting topology now looks like this:\\
+\includegraphics[scale=0.4]{approachthree.jpg}\\
+The possible developments consist of a chain of random units right after LeNet.
+
+This raises a new question: \emph{How is the meaning of the fully connected part altered when we add a new unit in the convolutional part?}\\
+After detailed evaluation, we came to the conclusion that all of the parameters in the fully connected part would be fine tuned to a specific expected input. This expectation however ceases to be met once the dimensionality of the convolutions changes, as this shifts a lot of weight parameters towards a new meaning.\\
+This means that we have two choices on how to process the fully connected part in case of a topological change in the convolutional part:
 \begin{enumerate}
 	\item{Adjust weights for the new meaning}
 	\item{Trash the fully connected part and train it anew}
 \end{enumerate}  
-Both of these possibilities are not satisfactory. 1 will take a long time, since the already trained structure is basically meaningless now. 2 throws away big, otherwise perfectly usable, parts of the network.  
-
+Both of these possibilities are not satisfactory. 1 will take a long time, since the already trained fully connected 4structure is basically meaningless now. 2 throws away big, otherwise perfectly usable, parts of the network.\\
+After some research into this problem we found a recent paper from Google, describing how to get completely rid of the fully connected layer by using a global average pooler \cite{Lin2014}.\\
+If we treat the feature map matrix \(F\) at the \(l\)th dimension as a vector \(F'_l\), the global average pooler is defined as follows:
+\[ f(F'_l) = \frac{\sum_{i = 1}^{n} F'_{li}}{n} \]
+We then forward the results of every layer to the softmax layer.\\
+Provided the last layer of the convolutional part outputs a tensor with exactly as many dimensions as the number of possible network output, we can exchange the complete fully connected part for this global average pooler while achieving the same results with a drastically improved performance in both evaluation and search space. \cite{Lin2014}\\
+The reason is, in a nutshell, that we stop imagining the output of a filter as detection of a feature.\\
+We now treat it as a rate of confidence: The bigger the numbers, the more confident we are that the feature is present.\\
+This means that the feature detection is no longer performed by the fully connected part, but instead by every single filter in the network together \cite{Lin2014}.
