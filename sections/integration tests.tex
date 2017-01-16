@@ -1,3 +1,6 @@
-We use automated testing to check each code change for issues. This means that the code everyone works on is located in a separate git branch \cite{gitbranch} and has to pass all integration tests before it gets merged into the main branch. This assures that we always have a stable version and improves code quality.
+We use automated testing to check each code change for issues. This means that the code everyone works on is located in a separate git branch \cite{gitbranch} and has to pass all integration tests before it gets merged into the main branch. A branch can be seen as a copy of the project that one works on in parallel to the original. When the work is done, the changes are copied over to the original version.
 
+But before the changes can be added to the main branch, they have to pass our tests, which are basically dummy-programs that get executed on Travis and AppVeyor and require different parts of the software to work. This assures that we always have a stable version and improves code quality. \\
 These tests are performed on remote servers and the status is visible on GitHub. \cite{githubci}
+
+Travis and AppVeyor both use the same technology. They create a virtual machine to simulate a computer and run our software on that machine.
