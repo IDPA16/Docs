@@ -1,9 +1,38 @@
-The traditional approach of optimizing the connection weigths to improve the network's accuracy is named backpropagation.
+A traditional approach of optimizing the connection weights to improve the network's accuracy is named backpropagation.
 
 \begin{quote}
 \emph{"The Backpropagation algorithm is a supervised learning method for multilayer feed-forward networks from the field of Artificial Neural Networks. }
 
 \emph{Feed-forward neural networks are inspired by the information processing of one or more neural cells, called a neuron. A neuron accepts input signals via its dendrites, which pass the electrical signal down to the cell body. The axon carries the signal out to synapses, which are the connections of a cell’s axon to other cell’s dendrites."} \cite{backprop_from_scratch} 
 \end{quote}
-	
-Backpropagation uses mathematical approaches to calculate changes to the weights of its connections, so that the output becomes more accurate every time the weights are updated.
+
+The backpropagation algorithm is a algorithm for supervised learning. In supervised learning, it is being measured how good a network performs, by testing a network with a given dataset, over and over again. 
+
+In such a dataset, input values and the expected outputs for these values are defined.
+
+The discrepancies from the specified outputs in the dataset and the actual outputs are called the \emph{errors} of the network.\cite{Learning2014}
+
+Using basic calculus, the so called \emph{error} of a network can be calculated. This is also known as solving the error minimization problem. \cite{Sathyanarayana2014}
+
+\begin{quote}
+\emph{"In the most popular version of backpropagation, called stochastic backpropagation, the weights are initially set to small random values."}\cite{Sathyanarayana2014}	
+\end{quote}
+
+Stochastic methods are being used, because \emph{"properly scaled random initialization can deal with the vanishing gradient problem"}\cite{Kraehenbuehl2016}
+
+With enough complexity, neural networks can represent any existing function. \cite{Nielsen2016}
+
+There are methods for picking initial weights, so that problems with local maximums of derivatives are not limiting the backpropagation algorithm.\cite{Nguyen1990}
+
+However, as Dr. Geoffrey E. Hinton states, backpropagation is often limited by the sheer sizes of networks that are required today:
+
+\begin{quote}
+\emph{"Backpropagation was the first computation-
+	ally efficient model of how neural networks could learn
+	multiple layers of representation, but it required labeled
+	training data and it did not work well in deep networks."}
+\cite{Hinton2007}
+\end{quote}
+
+
+\cite{Rojas1996}
