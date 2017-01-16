@@ -1,20 +1,38 @@
-The traditional approach of optimizing the connection weigths to improve the network's accuracy is named backpropagation.
+A traditional approach of optimizing the connection weights to improve the network's accuracy is named backpropagation.
 
 \begin{quote}
 \emph{"The Backpropagation algorithm is a supervised learning method for multilayer feed-forward networks from the field of Artificial Neural Networks. }
 
 \emph{Feed-forward neural networks are inspired by the information processing of one or more neural cells, called a neuron. A neuron accepts input signals via its dendrites, which pass the electrical signal down to the cell body. The axon carries the signal out to synapses, which are the connections of a cell’s axon to other cell’s dendrites."} \cite{backprop_from_scratch} 
 \end{quote}
-	
-In a nutshell, supervised learning means that training data with expected outputs is available, in contrast to unsupervised learning, where this data isn't available, but just a simple method to messure how "good" the result was. \cite{Learning2014}
 
-Using basic calculus, the so called "error" of a network can be calculated. This is also known as solving the error minimization problem. \cite{Sathyanarayana2014}
+The backpropagation algorithm is a algorithm for supervised learning. In supervised learning, it is being measured how good a network performs, by testing a network with a given dataset, over and over again. 
+
+In such a dataset, input values and the expected outputs for these values are defined.
+
+The discrepancies from the specified outputs in the dataset and the actual outputs are called the \emph{errors} of the network.\cite{Learning2014}
+
+Using basic calculus, the so called \emph{error} of a network can be calculated. This is also known as solving the error minimization problem. \cite{Sathyanarayana2014}
 
 \begin{quote}
 \emph{"In the most popular version of backpropagation, called stochastic backpropagation, the weights are initially set to small random values."}\cite{Sathyanarayana2014}	
 \end{quote}
 
+Stochastic methods are being used, because \emph{"properly scaled random initialization can deal with the vanishing gradient problem"}\cite{https://ai2-s2-pdfs.s3.amazonaws.com/8e56/448da09ceacea946c9d6fd393ad3e57e12cb.pdf}
+
 With enough complexity, neural networks can represent any existing function. \cite{http://neuralnetworksanddeeplearning.com/chap4.html}
+
+There are methods for picking initial weights, so that problems with local maximums are not limiting the backpropagation algorithm.\cite{http://ce.sharif.edu/courses/84-85/2/ce667/resources/root/Seminar_no_6/Widrow.pdf}
+
+However, as Dr. Geoffrey E. Hinton states, backpropagation is often limited by the sheer sizes of networks that are required today:
+
+\begin{quote}
+\emph{"Backpropagation was the first computation-
+	ally efficient model of how neural networks could learn
+	multiple layers of representation, but it required labeled
+	training data and it did not work well in deep networks."}
+\cite{http://www.cs.toronto.edu/~fritz/absps/tics.pdf}
+\end{quote}
 
 
 https://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf
