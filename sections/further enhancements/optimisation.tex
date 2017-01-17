@@ -12,5 +12,14 @@ Firaz Abuzaid also mentions that "at runtime,  the convolution operations are co
 
 We were (unfortunately) able to confirm these numbers as realistic - one line of code (the multiplication of the matrices values) took up to 93\% of the execution time when testing our code, the loop for executing these multiplications took another 6\% of the execution time. 
 
-These are some of the improvements that could be done to optimize the performance of convolutional neural networks:
+Here are some improvements that could be done to optimise the performance of convolutional neural networks:
 
+\begin{itemize}
+	\item Using GPUs to accelerate matrix-multiplications\cite{Hochberg2012}
+	
+	Using the power of GPUs for complex and computation heavy calculations has been very important the last years in the industry. GPU toolkits seem to consistently perform the same tasks five to ten times faster than their CPU counterparts.\cite{Abuzaid2015}
+	
+	\item Using the CcT method to optimize CPU usage
+	
+	The CcT method has proven to be up to 4 times faster than one of the often used CPU toolkits for machine learning; Caffe. Utilizing this method would allow us to improve the performance of CNNs by a big margin without having to use expensive GPUs.\cite{Abuzaid2015}
+\end{itemize}
