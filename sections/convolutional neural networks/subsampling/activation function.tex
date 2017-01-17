@@ -1,0 +1,7 @@
+Every procedure and concept that we described so far ia a linear function.  
+To make a combination of layers meaningful, we need to introduce nonlinearities after each convolution, as a stack of layers would otherwise behave like just one big linear layer.\\
+This is done by an activation function layer. \\
+The most commonly used one in the field of image recognition is the rectifying linear unit, in short \textbf{ReLU} \cite{AlexKrizhevsky2012}.
+It's definition is extremely easy:
+$$f(x) = max(x, 0)$$
+In other words, it just replaces every negative value in a feature map for a zero.  
