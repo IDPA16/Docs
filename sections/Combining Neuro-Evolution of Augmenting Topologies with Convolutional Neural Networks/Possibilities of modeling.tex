@@ -21,8 +21,8 @@ This approach is probably as modular as it gets, however it brings various probl
 \end{enumerate}
 
 We can't address all of these conflicts in a satisfactory way, so we decided to go on to a next approach.\\
-We adressed issue 3 by separating the whole network into a convolutional and a fully connected part. This allows us to takle issue 1 by adding the concept of a \emph{minimal network}, inspired by NEAT's practice of always starting by combining all inputs with all outputs.\\
-In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in it's application. \cite{YannLeCun1998}\\
+We adressed issue 3 by separating the whole network into a convolutional and a fully connected part. This allows us to take issue 1 by adding the concept of a \emph{minimal network}, inspired by NEAT’s practice of always starting with combining all inputs with all outputs.\\
+In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in its application. \cite{YannLeCun1998}\\
 The overhauled version would start out like this:\\
 \includegraphics[scale=0.4]{approachtwoinit.jpg}\\
 And could evolve into something like this:\\
@@ -33,7 +33,7 @@ We can only scale the weight matrixes in the filters to the same size by either 
 We come to the conclusion that we have to limit the modularity of the Filters, as doing otherwise brings to many cons.  
 Instead of letting the filters connect to whatever they want, we group them in convolutions.\\
 These can alter the dimensionality of all filters in them at once, guaranteeing homogeneity and encapsulation.\\
-As the filters are now synchronized in their convolutions, we have no more problems introducing poolers or ReLUs, as a convolution as a whole doesn't care about the size of it's input matrix.\\
+With the filters now being synchronized in their convolutions, we have no more problems introducing poolers or ReLUs, as a convolution as a whole doesn’t care about the size of it’s input matrix.\\
 Our updated pool of available units for stochastic insertion is now:  
 
 \begin{table}[h]
@@ -57,7 +57,7 @@ This means that we have two choices on how to process the fully connected part i
 	\item{Trash the fully connected part and train it anew}
 \end{enumerate}  
 Both of these possibilities are not satisfactory. 1 will take a long time, since the already trained fully connected 4structure is basically meaningless now. 2 throws away big, otherwise perfectly usable, parts of the network.\\
-After some research into this problem we found a recent paper from Google, describing how to get completely rid of the fully connected layer by using a global average pooler \cite{Lin2014}.\\
+After some research into this problem we found a recent paper from Google, describing how to get rid of the fully connected layer completely by using a global average pooler \cite{Lin2014}.\\
 If we treat the feature map matrix \(F\) at the \(l\)th dimension as a vector \(F'_l\), the global average pooler is defined as follows:
 \[ f(F'_l) = \frac{\sum_{i = 1}^{n} F'_{li}}{n} \]
 We then forward the results of every layer to the softmax layer.\\
