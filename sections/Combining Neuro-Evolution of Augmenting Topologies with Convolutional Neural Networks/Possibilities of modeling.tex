@@ -92,4 +92,12 @@ The overhauled residual block now looks like this:\\
 \includegraphics{bottleneck.png}\\
 While more convolutions would in theory be possible, only one is used, as the bottleneck dimension poolers introduce new parameters themselves.\\
 This method has been demonstrated to achieve very similar levels of accuracy while reducing a bit chunk of the computational cost \cite{KaimingHe2015}.\\
-Residual Blocks are modular by nature, so they are a perfect fit for our NEAT algorithm. When analyzed
+Residual Blocks are modular by nature, so they are a perfect fit for our NEAT algorithm. When analyzing them, we can easily extract following parameters from them:\\
+\begin{enumerate}
+	\item{Weights of first dimension pooler}
+	\item{Weights of convolution pooler}
+	\item{Weights of second dimension pooler}
+	\item{Downscaled number of dimensiona}
+	\item{Upscaled number of dimensiona}
+	\item{Number of convolutions}
+\end{enumerate}
