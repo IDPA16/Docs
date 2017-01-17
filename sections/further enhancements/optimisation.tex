@@ -1,0 +1,16 @@
+The single biggest challenge we faced was performance.
+
+We had estimated that for training a full set of 800 pictures at a mere 400 to 400 pixels, we would need months for just training the network once. This held us back from efficiently mesure our algorithms correctness.
+
+\begin{quote}
+	\emph{"Currently, large-scale CNN experiments require specialized hardware, such as NVidia GPUs,
+		and specialized APIs, such as NVidia’s CuDNN library, to
+		achieve  adequate  training  performance."} \cite{Abuzaid2015} 
+\end{quote}
+
+Firaz Abuzaid also mentions that "at runtime,  the convolution operations are computationally expensive and take up about 67\% of the time; other estimates put this figure around 95\%".
+
+We were (unfortunately) able to confirm these numbers as realistic - one line of code (the multiplication of the matrices values) took up to 93\% of the execution time when testing our code, the loop for executing these multiplications took another 6\% of the execution time. 
+
+These are some of the improvements that could be done to optimize the performance of convolutional neural networks:
+
