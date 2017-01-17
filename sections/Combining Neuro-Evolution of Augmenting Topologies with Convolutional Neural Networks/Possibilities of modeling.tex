@@ -66,10 +66,10 @@ The reason is, in a nutshell, that we stop imagining the output of a filter as d
 We now treat it as a rate of confidence: The bigger the numbers, the more confident we are that the feature is present.\\
 This means that the feature detection is no longer performed by the fully connected part, but instead by every single filter in the network together \cite{Lin2014}.
 Our standard network now looks like this:\\
-\includegraphics[scale=0.4]{approachfour.jpg}\\
+\includegraphics[scale=0.4]{approachfour.png}\\
 
 And could develop into something like this:\\
-\includegraphics[scale=0.4]{approachfourevol.jpg}\\
+\includegraphics[scale=0.4]{approachfourevol.png}\\
 
 We now seem to have resolved all issues, however when looking at the layers of the example, we see that it has a depth of 8 logical layers (ReLU layers are not counted because they do not result in a feature extraction, as they are merely activation functions). This huge amount is very atypical and has been shown to result is various problems such as very high hardware requirements and lower accuracies\cite{Simonyan2015}.\\
 The fundamental problem is that the effect of a change in the parameters in a lower layer becomes abysmal compared to a change in the higher ones \cite{Simonyan2015} \cite{Hochreiter1991}.
