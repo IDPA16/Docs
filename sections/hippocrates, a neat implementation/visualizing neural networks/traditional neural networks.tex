@@ -45,3 +45,7 @@ $$ yStep = (ySize - ((maxNeuronCount + 2) * (minMargin + neuronRadius * 2))) $$
  $ layerCount + 2 $ is there, because there are also borders to be kept at the corner of the drawing area to be drawn on - exactly 2 per dimension.
  
  Of course, this means that if $ (minMargin + neuronRadius) * (layerCount + 2) > width $ the neurons will overlap anyways and the structure will be hard to read.
+ 
+ This will result in such a structure (taken straight from our software NEAT\_Visualizer):
+ 
+ \includegraphics[scale=0.5, angle=90]{visualizer.png}
