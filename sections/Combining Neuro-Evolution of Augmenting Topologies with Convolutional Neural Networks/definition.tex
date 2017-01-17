@@ -1,0 +1,16 @@
+Residual Blocks are modular by nature, so they are a perfect fit for our NEAT algorithm.\\
+When analyzing them, we can easily extract following parameters from them:\\
+\begin{enumerate}
+	\item{Weights of first dimension pooler}
+	\item{Weights of convolution pooler}
+	\item{Weights of second dimension pooler}
+	\item{Downscaled number of dimensions in each residual block}
+	\item{Upscaled number of dimensions in each residual block}
+	\item{Number of convolutions in each residual block}
+	\item{Total number of residual blocks}
+\end{enumerate}  
+Through traditional means we can adjust the parameters 1 to 3. \\
+Numbers 4 to 7 are predefined in ResNet. 
+Their exact values are defined empirically and experimentally. This is of course suboptimal, as we already asserted in chapter two.\\
+We think NEAT can optimize these by encoding them as genes in the genome. \\
+However, because of the nature of our smallest building blocks
