@@ -23,3 +23,7 @@ Here are some improvements that could be done to optimise the performance of con
 	
 	The CcT method has proven to be up to 4 times faster than one of the often used CPU toolkits for machine learning; Caffe. Utilizing this method would allow us to improve the performance of CNNs by a big margin without having to use expensive GPUs.\cite{Abuzaid2015}
 \end{itemize}
+
+There are other approaches of optimizing CNNs to be more efficient, such as Low Rank Expansions\cite{Jaderberg2014},  the approach of Optimizing a FPGA-based Accelerator Design for Deep Convolutional Neural Networks\cite{Zhang2015} and Convexified Convolutional Neural Networks\cite{Zhang2016}.
+
+All these approaches share the same limitations for us - it is unclear whether they are even compatible with our NEAT based evolutionary algorithm, and if they are, the changes to the inner workings of our algorithm would be drastic, so that benchmarking would be hard. Due to the recency of these developments, it is hard to fully estimate their impact onto our model and performance.
