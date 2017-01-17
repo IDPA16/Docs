@@ -21,8 +21,8 @@ This approach is probably as modular as it gets, however it brings various probl
 \end{enumerate}
 
 We can't address all of these conflicts in a satisfactory way, so we decided to go on to a next approach.\\
-We adressed issue 3 by separating the whole network into a convolutional and a fully connected part. This allows us to takle issue 1 by adding the concept of a \emph{minimal network}, inspired by NEAT's practice of always starting by combining all inputs with all outputs.\\
-In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in it's application. \cite{YannLeCun1998}\\
+We adressed issue 3 by separating the whole network into a convolutional and a fully connected part. This allows us to take issue 1 by adding the concept of a \emph{minimal network}, inspired by NEAT’s practice of always starting with combining all inputs with all outputs.\\
+In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in its application. \cite{YannLeCun1998}\\
 The overhauled version would start out like this:\\
 \includegraphics[scale=0.4]{approachtwoinit.jpg}\\
 And could evolve into something like this:\\
@@ -33,7 +33,7 @@ We can only scale the weight matrixes in the filters to the same size by either 
 We come to the conclusion that we have to limit the modularity of the Filters, as doing otherwise brings to many cons.  
 Instead of letting the filters connect to whatever they want, we group them in convolutions.\\
 These can alter the dimensionality of all filters in them at once, guaranteeing homogeneity and encapsulation.\\
-As the filters are now synchronized in their convolutions, we have no more problems introducing poolers or ReLUs, as a convolution as a whole doesn't care about the size of it's input matrix.\\
+With the filters now being synchronized in their convolutions, we have no more problems introducing poolers or ReLUs, as a convolution as a whole doesn’t care about the size of it’s input matrix.\\
 Our updated pool of available units for stochastic insertion is now:  
 
 \begin{table}[h]
@@ -57,7 +57,7 @@ This means that we have two choices on how to process the fully connected part i
 	\item{Trash the fully connected part and train it anew}
 \end{enumerate}  
 Both of these possibilities are not satisfactory. 1 will take a long time, since the already trained fully connected 4structure is basically meaningless now. 2 throws away big, otherwise perfectly usable, parts of the network.\\
-After some research into this problem we found a recent paper from Google, describing how to get completely rid of the fully connected layer by using a global average pooler \cite{Lin2014}.\\
+After some research into this problem we found a recent paper from Google, describing how to get rid of the fully connected layer completely by using a global average pooler \cite{Lin2014}.\\
 If we treat the feature map matrix \(F\) at the \(l\)th dimension as a vector \(F'_l\), the global average pooler is defined as follows:
 \[ f(F'_l) = \frac{\sum_{i = 1}^{n} F'_{li}}{n} \]
 We then forward the results of every layer to the softmax layer.\\
@@ -65,3 +65,39 @@ Provided the last layer of the convolutional part outputs a tensor with exactly 
 The reason is, in a nutshell, that we stop imagining the output of a filter as detection of a feature.\\
 We now treat it as a rate of confidence: The bigger the numbers, the more confident we are that the feature is present.\\
 This means that the feature detection is no longer performed by the fully connected part, but instead by every single filter in the network together \cite{Lin2014}.
+Our standard network now looks like this:\\
+\includegraphics[scale=0.4]{approachfour.jpg}\\
+
+And could develop into something like this:\\
+\includegraphics[scale=0.4]{approachfourevol.jpg}\\
+
+We now seem to have resolved all issues, however when looking at the layers of the example, we see that it has a depth of 8 logical layers (ReLU layers are not counted because they do not result in a feature extraction, as they are merely activation functions). This huge amount is very atypical and has been shown to result is various problems such as very high hardware requirements and lower accuracies\cite{Simonyan2015}.\\
+The fundamental problem is that the effect of a change in the parameters in a lower layer becomes abysmal compared to a change in the higher ones \cite{Simonyan2015} \cite{Hochreiter1991}.
+A network of this size is not realistically trainable by us. 
+
+A very recent paper now belonging to the Facebook AI Research group deals with these issues.\\
+They introduce the concept of Residual Networks, in short ResNets. \cite{KaimingHe2015}\\
+Their goal was to create a convolutional network by combining an arbitrary amount of well defined residual units on which these problems are of no concern.
+Overly simplified, they address the problem of varying influence by adding a new kind of connecting, called a shortcut.\\
+
+What it does is simply add matrixes. If they have different dimensionalities, the smaller matrix gets projected on the bigger one by being processed by a one by one matrix with a respective number of filters.\\
+
+A residual block looks like this: \\
+\includegraphics{shortcut.PNG}\\
+On the left side, a convolutional action takes place (in this case two convolutions with one ReLU activation inbetween). On the right side, the original input of the residual block is added to its output.\\
+This overlay guarantees that the convolutions cannot alter the original state too much, as they now merely highlight features as opposed to extracting them.\\
+The issue of performance is addressed by applying a bottleneck.\\
+This means downsampling the input dimensionality of the residual block by applying one by one convolutions before performing the convolution and then upscaling it again. This procedure is inspired by Googles Network In Network Inception structure \cite{KaimingHe2015} \cite{Lin2014}.\\
+The overhauled residual block now looks like this:\\
+\includegraphics{bottleneck.PNG}\\
+While more convolutions would in theory be possible, only one is used, as the bottleneck dimension poolers introduce new parameters themselves.\\
+This method has been demonstrated to achieve very similar levels of accuracy while reducing a bit chunk of the computational cost \cite{KaimingHe2015}.\\
+Residual Blocks are modular by nature, so they are a perfect fit for our NEAT algorithm. When analyzing them, we can easily extract following parameters from them:\\
+\begin{enumerate}
+	\item{Weights of first dimension pooler}
+	\item{Weights of convolution pooler}
+	\item{Weights of second dimension pooler}
+	\item{Downscaled number of dimensiona}
+	\item{Upscaled number of dimensiona}
+	\item{Number of convolutions}
+\end{enumerate}
