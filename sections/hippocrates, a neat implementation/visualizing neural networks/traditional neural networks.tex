@@ -34,10 +34,14 @@ $ width $ is the available width (also $ xSize $), $ height $ is the available h
 
 $ layerCount $ is defined as the amount of layers, $ maxNeuronCount $ as the max amount of neurons in any layer.
 
-
+A $ Step $ (x or y) defines the distance between the centers of neurons, in x or in y direction, respectively.
 
 $$ xStep = (xSize - ((layerCount + 2) * (minMargin + neuronRadius * 2))) $$
+
+$$ yStep = (ySize - ((maxNeuronCount + 2) * (minMargin + neuronRadius * 2))) $$
 
  whereat $ minMargin $ is the margin that should be kept between neurons to make sure they aren't overlapping, and $ neuronRadius $ is the radius of the neurons to be drawn.
  
  $ layerCount + 2 $ is there, because there are also borders to be kept at the corner of the drawing area to be drawn on - exactly 2 per dimension.
+ 
+ Of course, this means that if $ (minMargin + neuronRadius) * (layerCount + 2) > width $ the neurons will overlap anyways and the structure will be hard to read.
