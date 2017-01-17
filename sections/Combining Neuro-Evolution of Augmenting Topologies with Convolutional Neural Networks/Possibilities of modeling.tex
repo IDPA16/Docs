@@ -9,7 +9,7 @@ So our two questions while combining become:
 Our first approach was simply taking NEAT and exchanging some of the neurons for Filters.\\
 An example network can be seen here:\\
 
-\includegraphics[scale=0.4]{approachone.jpg}  
+\includegraphics[scale=0.4]{approachone.png}  
 
 This approach is probably as modular as it gets, however it brings various problems when combining.  
 \begin{enumerate}
@@ -24,9 +24,9 @@ We can't address all of these conflicts in a satisfactory way, so we decided to 
 We adressed issue 3 by separating the whole network into a convolutional and a fully connected part. This allows us to take issue 1 by adding the concept of a \emph{minimal network}, inspired by NEAT’s practice of always starting with combining all inputs with all outputs.\\
 In our case, the minimal network would incorporate some combination of convolution and pooling to reduce the input space. While the exact form of it is debatable, we think a good starting point is LeNet, as it proved itself to be flexible in its application. \cite{YannLeCun1998}\\
 The overhauled version would start out like this:\\
-\includegraphics[scale=0.4]{approachtwoinit.jpg}\\
+\includegraphics[scale=0.4]{approachtwoinit.png}\\
 And could evolve into something like this:\\
-\includegraphics[scale=0.4]{approachtwoevolved.jpg}\\
+\includegraphics[scale=0.4]{approachtwoevolved.png}\\
 This setup is problematic because filters are supposed to work together to form convolutions.\\
 To process the same input (issue 4), the filters need to have the same size, which we cannot guarantee once we randomly insert new filters or, as per issue 2, pooling layers.\\
 We can only scale the weight matrixes in the filters to the same size by either filling the smaller ones with a bunch of meaningless zeros or pooling the bigger one down, which, beeing a non-lossless compressing algorithm, makes our matrix less accurate.\\
@@ -46,7 +46,7 @@ Our updated pool of available units for stochastic insertion is now:
 \end{table}
 
 Our starting topology now looks like this:\\
-\includegraphics[scale=0.4]{approachthree.jpg}\\
+\includegraphics[scale=0.4]{approachthree.png}\\
 The possible developments consist of a chain of random units right after LeNet.
 
 This raises a new question: \emph{How is the meaning of the fully connected part altered when we add a new unit in the convolutional part?}\\
@@ -66,10 +66,10 @@ The reason is, in a nutshell, that we stop imagining the output of a filter as d
 We now treat it as a rate of confidence: The bigger the numbers, the more confident we are that the feature is present.\\
 This means that the feature detection is no longer performed by the fully connected part, but instead by every single filter in the network together \cite{Lin2014}.
 Our standard network now looks like this:\\
-\includegraphics[scale=0.4]{approachfour.jpg}\\
+\includegraphics[scale=0.4]{approachfour.png}\\
 
 And could develop into something like this:\\
-\includegraphics[scale=0.4]{approachfourevol.jpg}\\
+\includegraphics[scale=0.4]{approachfourevol.png}\\
 
 We now seem to have resolved all issues, however when looking at the layers of the example, we see that it has a depth of 8 logical layers (ReLU layers are not counted because they do not result in a feature extraction, as they are merely activation functions). This huge amount is very atypical and has been shown to result is various problems such as very high hardware requirements and lower accuracies\cite{Simonyan2015}.\\
 The fundamental problem is that the effect of a change in the parameters in a lower layer becomes abysmal compared to a change in the higher ones \cite{Simonyan2015} \cite{Hochreiter1991}.
@@ -92,12 +92,3 @@ The overhauled residual block now looks like this:\\
 \includegraphics{bottleneck.PNG}\\
 While more convolutions would in theory be possible, only one is used, as the bottleneck dimension poolers introduce new parameters themselves.\\
 This method has been demonstrated to achieve very similar levels of accuracy while reducing a bit chunk of the computational cost \cite{KaimingHe2015}.\\
-Residual Blocks are modular by nature, so they are a perfect fit for our NEAT algorithm. When analyzing them, we can easily extract following parameters from them:\\
-\begin{enumerate}
-	\item{Weights of first dimension pooler}
-	\item{Weights of convolution pooler}
-	\item{Weights of second dimension pooler}
-	\item{Downscaled number of dimensiona}
-	\item{Upscaled number of dimensiona}
-	\item{Number of convolutions}
-\end{enumerate}
