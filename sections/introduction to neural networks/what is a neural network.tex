@@ -24,7 +24,8 @@ Here is a basic example of a neural network:
 
 Each connection is represented as an arrow and has an associated weight. Every neuron is connected to all neurons in the previous and in the next layer.
 
-The network above has 9 weights. This is the genome, which is used to store the configuration of a network. \cite{Stanley2002}
+The configuration of how all neurons and layers are interconnected, as well as the number of layers, is called the \textbf{topology} of the network.\cite{Anderson1995}
+
 
 For simple networks, you can also write down the inputs and the corresponding outputs.
 
@@ -33,5 +34,21 @@ For simple networks, you can also write down the inputs and the corresponding ou
 	\rightarrow
 	\begin{vmatrix} 0.03 \\ 0.76 \\ 0.87 \\ 0.10 \end{vmatrix}	
 \]
+This network was trained to solve the XOR problem, which can be simplified as "are my inputs different?".\\
+We defined the output to represent \emph{yes} if its $>= 0.5$ and \emph{no} otherwise.
 
-As you can see, this network was trained to solve the XOR problem. The network outputs a higher number, if the XOR condition is met.
+It's also possible for a neural network to have multiple outputs.\\
+We will use the assumption that our network has one output per possible answer for the rest of the documentation.\\
+Example: We have a picture of a flower. It can either be a poppy, a lilly or a dandelion. Our neural network looking at the flower would have three outputs.
+
+In this case we still wish to have one definitive output.
+For this we'll use the \textbf{softmax} function, which squashes all our outputs in matter that lets them add up to exactly one. One can think of it as a normalization that represents confidence.\cite{Anderson1995}\\
+It is defined as follows: 
+$$\sigma(\mathbf{z})_j = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}}$$ 
+
+for j = 1, \textellipsis{}, K.
+
+Example: If we our outputs are $[1,2,3,4,1,2,3]$, the softmax of that is $[0.024, 0.064, 0.175, 0.475, 0.024, 0.064, 0.175]$
+
+We then simply take the highest one as our main output. This is called the \emph{winner takes all principle} and is modeled after how the brain works \cite{Anderson1995}\\
+

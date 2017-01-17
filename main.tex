@@ -7,6 +7,9 @@
 \usepackage{tools/neuralnetwork}
 \usepackage{setspace}
 \usepackage[left=2cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {resources/img/} }
+
 \hypersetup{
 	allcolors=black,
 	colorlinks=true
@@ -44,6 +47,7 @@
 		\subsection{How does a neural network learn}
 			\subsubsection{Traditional}
 				\subfile{sections/"introduction to neural networks/how does a neural network learn/traditiontal"}
+			\newpage
 			\subsubsection{Genetic algorithm}
 				\subfile{sections/"introduction to neural networks/how does a neural network learn/genetic algorithm"}
 	\newpage
@@ -60,49 +64,51 @@
 		\subsection{Problems with image recognition}
 			\subfile{sections/"convolutional neural networks"/"problems with image recognition"}
 		\subsection{Subsampling}
-			\subfile{sections/"convolutional neural networks/subsampling/subsampling.tex"}
+			\subfile{sections/"convolutional neural networks/subsampling/subsampling"}
 			\subsubsection{Kernels}
-			\subfile{sections/"convolutional neural networks/subsampling/kernerls.tex"}
+			\subfile{sections/"convolutional neural networks/subsampling/kernerls"}
 			\subsubsection{Poolers}
-			\subfile{sections/"convolutional neural networks/subsampling/poolers.tex"}
+			\subfile{sections/"convolutional neural networks/subsampling/poolers"}
+			\subsubsection{Activation function}
+			\subfile{sections/"convolutional neural networks/subsampling/activation function"}
 		\subsection{Structure}
 			.
 	\newpage
 
 	\section{Hippocrates, a NEAT implementation}
 		\subsection{Motivation}
-			.
+			\subfile{sections/hippocrates/motivation}
 		\subsection{Discrepancies}
 			\subsubsection{Paper}
-				.
+				\subfile{sections/hippocrates/discrepancies/paper}
 			\subsubsection{Original implementation}
-				.
-		\subsection{Convolutional module}
-			.
+				\subfile{sections/hippocrates/discrepancies/original_implementation}
 		\subsection{Visualizing Neural Networks}
 			.
 	\newpage
 
 	\section{Build tools}
 		\subsection{Version control}
+			\subfile{sections/"build tools/version control"}
 			\subsubsection{Git}
-				.
+				\subfile{sections/"build tools/version control/git"}
 			\subsubsection{GitHub}
-				.
+				\subfile{sections/"build tools/version control/github"}
 		\subsection{Integration tests}
+			\subfile{sections/"integration tests"}
 			\subsubsection{Travis}
-				.
+				\subfile{sections/"integration tests/travis"}
 			\subsubsection{AppVeyor}
-				.
+				\subfile{sections/"integration tests/appveyor"}
+		\subsection{CMake}
+			\subfile{sections/"build tools/cmake"}
 	\newpage
 
 	\section{Combining Neuro-Evolution of Augmenting Topologies with Convolutional Neural Networks}
-		\subsection{Possibilities of modeling}
-			.
-		\subsection{Challenges}
-			.
-		\subsection{Solutions}
-			.
+		\subsection{Challenges \& Solutions}
+			\subfile{sections/"Combining Neuro-Evolution of Augmenting Topologies with Convolutional Neural Networks/Possibilities of modeling"}
+		\subsection{Definition}
+			\subfile{sections/"Combining Neuro-Evolution of Augmenting Topologies with Convolutional Neural Networks/definition"}
 		\subsection{Implementation}
 			.
 	\newpage
@@ -113,10 +119,12 @@
 	\newpage
 
 	\section{Further enhancements}
+		\subsection{Optimisation}
+			\subfile{sections/"further enhancements/optimisation"}
 		\subsection{Safety concerns}
 			.
 		\subsection{HyperNEAT}
-			.
+			\subfile{sections/"further enhancements/hyperneat"}
 	\newpage
 
 	\section{Our Work}
@@ -143,7 +151,6 @@
 		\subfile{sections/"contact with doctors"}
 	\newpage
 	
-
 	\nocite{*}
 	\setstretch{1}
 	\bibliography{resources/bibliography}
