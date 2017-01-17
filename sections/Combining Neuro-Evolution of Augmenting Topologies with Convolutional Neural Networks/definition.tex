@@ -13,4 +13,5 @@ Through traditional means we can adjust the parameters 1 to 3. \\
 Numbers 4 to 7 are predefined in ResNet. 
 Their exact values are defined empirically and experimentally. This is of course suboptimal, as we already asserted in chapter two.\\
 We think NEAT can optimize these by encoding them as genes in the genome. \\
-However, because of the nature of our smallest building blocks
+However, because of the nature of our smallest building blocks, it doesn't make sense to store these genomes in a per-connection basis.\\
+All parameters can be described as state of a residual block. For the last one, we just abstract it as a link to the next block. If the algorithm decides to add a new residual block, it can be inserted in a random existing link.\\
