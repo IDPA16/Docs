@@ -9,9 +9,9 @@ Git has many powerful tools that defeat their antecessors from other version con
 
 One of these tools is the merge tool. It allows to either automatically - if no conflicts happen - or manually - merge together files from different branches or repositories. This is very useful when working together with multiple teammembers, because you don't have to watch out too much about working in the same files - as long as there's no redundant work done - because the merge tool is able to often fix alot of collisions automatically, or if not, it marks the colliding parts so users have less hard times fixing the conflicts.
 
-When creating and pushing commits onto git repository (a commit is a subset of changes) everyone gets a copy of this commit, as soon as queried for it via "pulling" (getting the latest changes from a remote repository.)
+When creating and pushing commits onto git repository (a commit is a subset of changes) everyone gets a copy of this commit, as soon as queried for it via "pulling" (getting the latest changes from a remote repository.)\cite{Torvalds}
 
-Because of that commit messages are important. They're ought to explain what the commit changed on the repository.
+Because of that commit messages are important. They ought to explain what the commit changed on the repository.
 
 To make sure everyone can understand what has been done, we adopted some rule set for naming commits\cite{Beams2014}:
 
@@ -25,16 +25,10 @@ To make sure everyone can understand what has been done, we adopted some rule se
 	\item Use the body to explain what and why vs. how
 \end{itemize}
 
+The \emph{limit the subject line to 50 characters} rule is very useful:
 
+It guarantees that on github, the commit message will be readable without requiring a user to expand a are of the page.
 
+The \emph{use the imperative mood in the subject line} rule is useful because it makes commits more readable. As we have used this rule, it has become more and more clear to us that not using imperative means having redundant characters.
 
-
-
-
-
-
-
-
-
-
-\cite{Torvalds}
+As an example, instead of "Add Implementation" the commit message could be "Added Implementation". That is two characters more without any gain of insight or readability. Thats why we found this rule particularly useful.
