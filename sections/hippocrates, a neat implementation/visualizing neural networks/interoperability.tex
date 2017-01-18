@@ -1,0 +1,27 @@
+While creating a tool to visualize the structures of NEATly generated network, we faced multiple problems.
+	
+We decided to use Avalonia (https://github.com/AvaloniaUI/Avalonia) as a framework for the visualizer.
+
+Because Avalonia is based on C\# (that is a non-native, safe, just in time compiled language), it can not natively exchange data with Hippocrates, that is written in C++ and compiled for a certain platform.
+
+There is a method called interop marshalling, that would provide a solution to such a problem.\cite{Microsoft2016}
+
+This method however has been designed for Windows, and will work differently on Linux.
+
+Also, it would make the implementation of the visualizer dependent of the memory layout, which is a huge constraint to be taken into consideration. That's why we decided against using interop marshalling.
+
+Another possibility is using the file system to exchange data. All data that belongs together will be contained in a folder with a file per logical unit that it represents.
+
+This is the approach we took to avoid having memory incompatibilities For saving data in a file however, you need a common representation for the data you want to exchange between programs. 
+
+The keyword to that problem is serialization. Serializing data is the procedure of converting data from the native memory to a more general (human readable or non-readable) format. 
+
+We decided to use a humanly readable and well known serialization format for Hippocrates, because it allows us more flexibility and automation in terms of serializing and deserializing (reading the data into native memory again, but maybe differently structured).
+
+The two most often used and most famous humanly readable data formats are XML and JSON.\cite{Strassner2015}
+
+We decided to go with JSON, because it is more lightweight and by now more often used than XML.
+
+Memory overflow is a problem when reading lots of data from a file system - it can be fought by not reading all the data, but some data after another and only when needed, and discard as much as possible when not required anymore.
+
+This is often also called \emph{lazy programming} or \emph{lazy initialization}, and it ended up being what we implemented to ensure that the visualizer wouldn't collapse under big Hippocrates dumps.
