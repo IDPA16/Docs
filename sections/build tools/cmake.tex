@@ -3,6 +3,7 @@ It allows us to write a fairly simple configuration file which can then be used 
 It is a high level configuration that has to be converted into a platform specific one. This conversation is being done automatically by the build system (CMake) and thus does not cost us any time.
 
 This allows us to support almost every operating system, as it was important for us the be platform independent. \\
+
 The problem with platform dependent solutions is that they are not as accessible to everyone, and we really want to support all major operating systems to make our code and work as accessible as possible.
 
 CMake supports a hirachial setup of its build-tool, that allows you to move parts of the build tool to subfolder, and then chaining the build-scripts together with a root build script.\cite{cmake}
