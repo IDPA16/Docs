@@ -24,4 +24,11 @@ For the parameter tuning, we treat numbers 1 to 4 as a big vector of weights ins
 	\item{Chance for each weight to be uniformly perturbed: 90\%}
 	\item{Chance for each weight to be set to a random new value: 10\%}
 \end{itemize}
-\cite{Stanley2002}
+\cite{Stanley2002}\\
+
+Parameters 5 to 7 are more critical, as they greatly effect the computational cost.\\
+We limited changes to be only $+1$ in each, to go with NEAT's thought of starting with a small topology and only going up if necessary. The chances are thus taken straight from how NEAT treats extra neurons: Each genome has a 3\% chance of mutating one of the mentioned parameters at birth.
+
+Lastly, parameter 8 is the one directly in control of the network's depth. As ResNet proved, deep networks have great advantages to shallow ones \cite{KaimingHe2015}. So we made this value very prone to grow by one. The chance is analog to NEAT's chance of adding a new connection, which is 30\% at birth.
+
+Additionally, we changed the compatibility functions $c_3$ parameter to $0.06$ to account for the higher number of potential weight differences per genome.
