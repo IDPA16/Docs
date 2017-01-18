@@ -8,6 +8,12 @@
 \usepackage{setspace}
 \usepackage[left=2cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
 \usepackage{graphicx}
+\usepackage{etoolbox}
+\ifundef{\abstract}{}{\patchcmd{\abstract}%
+	{\quotation}{
+		\setlength{\parindent}{0pt}
+		\setlength{\parskip}{1em}
+		\setstretch{1.5}}{}{}}
 \graphicspath{ {resources/img/} }
 
 \hypersetup{
@@ -28,16 +34,16 @@
 \author{Jan Nils Ferner, Mathias Fischler, Sara Zarubica, Jeremy Stucki}
 
 \begin{document}
-
+\clearpage
 \maketitle
+\thispagestyle{empty}
 \newpage
 
 \begin{abstract}
-
-	\newpage
-
+	\subfile{sections/abstract}
+	\newpage 
 \end{abstract}
-
+	
 	\tableofcontents
 	\newpage
 
