@@ -1,0 +1,27 @@
+At the begginging, a big question was, in which language we should write our library in.\\
+The main contestants where C++ and C\#.
+We had to juggle different pros and cons.
+
+One aspect is, how easy the actual writing would be.  
+There is a concept in programming languages which is called \emph{memory safety}. 
+It describes, how and when objects end their accessibility.
+
+Just like real life, a program is made out of various objects, each of which having a distinct state and possible actions.\\
+One such possible object could be a dog. It's state, which is divided into a set of \emph{variables}, could for example consist of his age, his haircolor, his character and so forth. \\
+His possible actions, which are called \emph{functions} in the programming world, could include bark, walk or lick. Some of his functions might even alter his state, like a function for celebrating birthday might change the age variable by $+1$. These objects that compose a programm however have to, just like in real life again, die off at some point.\\
+Our program might spawn hundreds or thousands of objects. If we do not do something about it, these objects would clog up our entire memory and slow every process down. The question becomes "when does their lifetime end"?\\
+So called safe languages like C\# answer by saying "whenever absolutely no one needs them anymore anywhere". This very hedonistic principle is enforced by a \emph{garbage collector}. This is a program that carefully inspects a running process and it's objects and finds out, if an object is really not used anymore. Modern day garbage collectors have become very efficient at what they're doing, but still require performance. Another disadvantage is also that garbage collectors are non deterministic, which means that a programmer can never now for sure at what exact point the objects get destroyed. If the garbage collector that it's time to free up some space, it's gonna do it no matter what. If this happens during a performance critical part of the application, it's going to be slowed down by a lot.
+ 
+The counterpart are unsafe languages. C++ is called unsafe because before 2011 it didn't have a standard way to manage lifetimes of objects except for forcing the programmer to watch over the memory manually, often leading to corrupt data and undefined behaviour during the runtime. \cite{Stroustrup2013}\\
+In modern C++ however, lifetimes of complex objects can be managed by so called \emph{smart pointers}, which are implemented as reference counters.\\
+This means that everytime a function tries to use an object, it's reference counter goes up by one. If the function is done with it and doesn't need the memory anymore, this counter goes down by one. As soon as the reference counter hits zero, the object is destroyed. 
+ 
+This gives the programmer determinism, which means that he now knows exactly when the memory is going to get freed (provided he designed his application carefully). This however comes at the cost of requiring more design skill than a using a garbage collector.\\
+In certain edge cases it is possible that reference counters use up more performance than a garbage collector, as the latter is free to do more optimizations on the final code provided he can prove that the end effect is the same.
+ 
+Additional considerations are that the most used machine learning libraries are written in C++, however C\# has way better system of actually distributing the libraries. 
+
+This gives us a though decision: Do we want the comfort and stability of C\# for increased productivity or the absolute control and performance power of C++?
+
+In the end, Hippocrates was written in C++, as we deemed the performance of the library to be of crucial importance to the usability in the future.\\
+Mr. Ferner and Ms. Zarubica already wrote C++ since years at his company, the Messerli Informatik AG, and Mr. Ferner had a lot of experience teaching apprentices the ins and outs of the language, which is why he was happy to assist Mr. Fischler and Mr. Stucki in learning the common syntax and semantics of modern C++.
