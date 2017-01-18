@@ -2,3 +2,9 @@ Travis is a canadian service provider for automating integration tests on window
 
 Appveyor also provides its services for free to open source projects. \cite{appveyorpricing} \\
 We use it to compile and test our code on Windows with Visual Studio.
+
+We struggled a lot with appveyor, because our Visual Studio configs were based on Visual Studio 2017 RC and they required this version to run.
+
+However, when first used by us, Visual Studio 2017 RC was just released in closed beta as a pre-installation for continous integration. We had to get access to it by requesting for access through the public repository on github.
+
+Once correctly configured however, we never had any problems with appveyor.
