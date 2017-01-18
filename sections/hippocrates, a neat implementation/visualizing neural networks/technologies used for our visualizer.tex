@@ -1,0 +1,25 @@
+To create a visualizer, we had to chose technologies - for code and graphics.
+
+Due to convenience we decided quite immediately, that C\# would be our language of choice.
+It offers a high productivity with a very concise and remarkable syntax, and is very well known for some of our team users. C\# runs on the most used operating systems easily
+
+Also, C\# offers a very healthy ecosystem that allows developers and engineers to chose freely between competing products, all more often than not for free.
+
+The decision about what graphics/GUI system to be used was harder.
+
+The prime choice would have been WPF, however, it is limited through it depending on Windows drivers for DirectX.
+This rules WPF out, because we are convinced of the idea, that if possible, our tools should be available for everyone, not only just Windows users.
+
+Other possibilities would include Gtk-Sharp, WinForms and Avalonia.
+
+The latter one is just in Alpha and was discovered by Mr. Fischler while researching possibilities.
+
+However, it seemed to have similar features and approaches as WPF.
+
+Gtk-Sharp has many appealing features, but no good scalable drawing area. It runs well on Windows, Linux and macOS.
+
+WinForms is very stable due to its age, but will only run on Linux with help of a simulator called Wine. Wine can be found under https://www.winehq.org/.
+
+With that, it seemed the most exciting and still best option to chose Avalonia for development.
+
+Avalonia has a interesting modular system of rendering subsystem, currently supporting Gtk and Cairo (Windows, Linux, macOS) and Win32 with Direct2D (only windows). Skia is currently planned to be implemented to be and replacing Gtk.
