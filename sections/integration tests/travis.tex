@@ -4,3 +4,9 @@ Travis offers its services for free to open source projects. \cite{travispricing
 We use it to compile and test our code on Linux. Travis also supports macOS, but since they both use the same compiler we chose to just use Linux.  
 
 Travis also generates the PDF's for our documentation and warns us if a citation is missing a bibliography entry.  
+
+This automatic generation allows us to control the provided pdf remotely, without the need for building it offline.
+
+The services we used from travis have one big downside - they have no caching or preinstalled configurations. This means when using LaTeX or modern compilers that are still under development and not fully released, they have to be installed first, and this will take its time.
+
+Having the security of knowing when the PDF of the documentation still builds is something we value a lot and have learned to value even more when multiple people work at the same time.
